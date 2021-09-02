@@ -1,67 +1,74 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using ShopBridge.API.Constants;
+using ShopBridge.API.Infrastructure.Entities.Base;
+using System;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using static ShopBridge.API.Enums.Enums;
 
-namespace ShopBridge.API.Models
+namespace ShopBridge.API.Infrastructure.Entities
 {
-    /// <summary>
-    /// Product model
-    /// </summary>
-    public class Product
+    [Table("product", Schema = TableSchema.Product)]
+    public class ProductEntity : Entity
     {
         /// <summary>
-        /// GUID for Product
+        /// Product Id
         /// </summary>
-        public Guid? Id { get; set; }
+        [Key]
+        [Column("id")]
+        public Guid Id { get; set; }
 
         /// <summary>
         /// Product Name
         /// </summary>
+        [Column("name")]
         public string Name { get; set; }
 
         /// <summary>
         /// Product Description
         /// </summary>
+        [Column("description")]
         public string Description { get; set; }
 
         /// <summary>
         /// Product price
         /// </summary>
+        [Column("price")]
         public double Price { get; set; }
 
         /// <summary>
         /// Product Tax
         /// </summary>
+        [Column("tax")]
         public double Tax { get; set; } = 18;
 
         /// <summary>
         /// Is Product refundable
         /// </summary>
+        [Column("is_refundable")]
         public bool IsRefundable { get; set; }
 
         /// <summary>
         /// Product Category
         /// </summary>
-        public ProductCategory Category { get; set; }
+        [Column("category")]
+        public string Category { get; set; }
 
         /// <summary>
         /// Flag to detect if product is available
         /// </summary>
+        [Column("is_available")]
         public string IsAvailable { get; set; }
-
-        /// <summary>
-        /// Product Offers
-        /// </summary>
-        public IEnumerable<Offer> Offers { get; set; }
 
         /// <summary>
         /// Available quantity of Product 
         /// </summary>
+        [Column("available_quantity")]
         public int AvailableQuantity { get; set; }
 
         /// <summary>
         /// Is Product a Gift
         /// </summary>
+        [Column("is_gift")]
         public bool IsGift { get; set; }
 
         /// <summary>

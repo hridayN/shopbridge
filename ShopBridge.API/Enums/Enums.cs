@@ -35,5 +35,20 @@ namespace ShopBridge.API.Enums
             Cashback = 1,
             CashbackOnOtherItems = 2
         }
+
+        /// <summary>
+        /// Status Codes
+        /// </summary>
+        public enum StatusCode
+        {
+            BadRequest = 400,
+            Conflict = 409,
+            Created = 201,
+            Forbidden = 403,
+            InternalServerError = 500,
+            NotFound = 404,
+            Ok = 200,
+            Unauthorized = 403
+        }
     }
 }
