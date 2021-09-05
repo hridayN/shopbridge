@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace ShopBridge.API.Controllers
 {
+    /// <summary>
+    /// Product Controller
+    /// </summary>
     [ApiController]
     public class ProductController : ControllerBase
     {
@@ -28,6 +31,36 @@ namespace ShopBridge.API.Controllers
             else
             {
                 return BadRequest(response);
+            }
+        }
+
+        [HttpPost]
+        [Route("retrieveProduct/product")]
+        public async Task<IActionResult> RetrieveProduct(RetrieveProductRequest request)
+        {
+            RetrieveProductResponse response = await _productService.RetrieveProduct(request);
+            if (response.StatusCode == Enums.Enums.StatusCode.Ok)
+            {
+                return Ok(response);
+            }
+            else
+            {
+                return NotFound(response);
+            }
+        }
+
+        [HttpPost]
+        [Route("deleteProduct/product")]
+        public async Task<IActionResult> DeleteProduct(DeleteProductRequest request)
+        {
+            DeleteProductResponse response = await _productService.DeleteProduct(request);
+            if (response.StatusCode == Enums.Enums.StatusCode.Ok)
+            {
+                return Ok(response);
+            }
+            else
+            {
+                return NotFound(response);
             }
         }
     }

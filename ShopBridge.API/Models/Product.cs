@@ -47,7 +47,7 @@ namespace ShopBridge.API.Models
         /// <summary>
         /// Flag to detect if product is available
         /// </summary>
-        public string IsAvailable { get; set; }
+        public bool IsAvailable { get; set; }
 
         /// <summary>
         /// Product Offers

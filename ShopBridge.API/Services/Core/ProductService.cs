@@ -31,7 +31,7 @@ namespace ShopBridge.API.Services.Core
 
             if (request.Product.Id != null)
             {
-                var savedProductResponse = await _productRepository.GetByIdAsync(request.Product.Id.ToString());
+                var savedProductResponse = await _productRepository.GetByIdAsync((Guid)request.Product.Id);
                 if (savedProductResponse != null)
                 {
                     savedProductResponse.ModifiedBy = 1;
@@ -59,6 +59,66 @@ namespace ShopBridge.API.Services.Core
                 response.Message = "Product saved successfully";
             }
             response.StatusCode = StatusCode.Ok;
+            return response;
+        }
+
+        /// <summary>
+        /// RetrieveProduct
+        /// </summary>
+        /// <param name="request"></param>
+        /// <returns></returns>
+        public async Task<RetrieveProductResponse> RetrieveProduct(RetrieveProductRequest request)
+        {
+            RetrieveProductResponse response = new RetrieveProductResponse();
+            var savedProductResponse = await _productRepository.GetByIdAsync((Guid)request.ProductId);
+            if (savedProductResponse != null)
+            {
+                response.Product = ObjectMapper.Mapper.Map<Product>(savedProductResponse);
+                response.Message = "Product retrieved successfully";
+                response.StatusCode = StatusCode.Ok;
+            } else
+            {
+                response.Product = null;
+                response.Message = "No product found with the given id.";
+                response.StatusCode = StatusCode.NotFound;
+                return response;
+            }
+            return response;
+        }
+
+        /// <summary>
+        /// SearchProducts
+        /// </summary>
+        /// <param name="request"></param>
+        /// <returns></returns>
+        Task<SearchProductResponse> IProductService.SearchProducts(SearchProductRequest request)
+        {
+            throw new NotImplementedException();
+        }
+
+        /// <summary>
+        /// DeleteProduct
+        /// </summary>
+        /// <param name="request"></param>
+        /// <returns></returns>
+        public async Task<DeleteProductResponse> DeleteProduct(DeleteProductRequest request)
+        {
+            DeleteProductResponse response = new DeleteProductResponse();
+            var savedProductResponse = await _productRepository.GetByIdAsync((Guid)request.ProductId);
+            if (savedProductResponse != null)
+            {
+                savedProductResponse.ModifiedBy = 1;
+                savedProductResponse.ModifiedDate = DateTime.Now;
+                await _productRepository.DeleteAsync(savedProductResponse);
+                response.Message = "Product deleted successfully";
+                response.StatusCode = StatusCode.Ok;
+            }
+            else
+            {
+                response.Message = "No product found with the given id.";
+                response.StatusCode = StatusCode.NotFound;
+                return response;
+            }
             return response;
         }
     }

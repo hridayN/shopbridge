@@ -50,6 +50,6 @@ namespace ShopBridge.API.Infrastructure.Contracts.Base
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        Task<T> GetByIdAsync(string id);
+        Task<T> GetByIdAsync(Guid id);
     }
 }

@@ -23,7 +23,7 @@ namespace ShopBridge.API.Infrastructure
         /// Constructor
         /// </summary>
         /// <param name="options"></param>
-        public ShopBridgeProductDbContext(DbContextOptions<ShopBridgeProductDbContext> options) : base()
+        public ShopBridgeProductDbContext(DbContextOptions<ShopBridgeProductDbContext> options) : base(options)
         {
         }
 

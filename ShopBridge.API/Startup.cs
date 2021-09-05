@@ -9,6 +9,7 @@ using ShopBridge.API.Services.Contract;
 using ShopBridge.API.Services.Core;
 using ShopBridge.API.DBConnector;
 using Microsoft.EntityFrameworkCore;
+using ShopBridge.API.Settings;
 
 namespace ShopBridge.API
 {
@@ -33,6 +34,8 @@ namespace ShopBridge.API
         public void ConfigureServices(IServiceCollection services)
         {
             services.SetUpDataBase<ShopBridgeProductDbContext>(Configuration);
+            services.AddMvc();
+            services.AddControllers();
             // Add AutoMapper
             services.AddAutoMapper(typeof(Startup));
             // Add Application Layer
@@ -47,7 +50,7 @@ namespace ShopBridge.API
             using (var serviceScope = app.ApplicationServices.GetService<IServiceScopeFactory>().CreateScope())
             {
                 var context = serviceScope.ServiceProvider.GetRequiredService<ShopBridgeProductDbContext>();
-                context.Database.Migrate();
+                context.Database.EnsureCreated();
             }
             app.UseRouting();
 
