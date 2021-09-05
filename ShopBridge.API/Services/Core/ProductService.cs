@@ -53,6 +53,7 @@ namespace ShopBridge.API.Services.Core
                 request.Product.CreatedDate = DateTime.Now;
                 request.Product.ModifiedBy = 1;
                 request.Product.ModifiedDate = DateTime.Now;
+                request.Product.Id = new Guid();
                 productEntity = ObjectMapper.Mapper.Map<ProductEntity>(request.Product);
                 var savedProduct = await _productRepository.AddAsync(productEntity);
                 response.Product = ObjectMapper.Mapper.Map<Product>(savedProduct);
