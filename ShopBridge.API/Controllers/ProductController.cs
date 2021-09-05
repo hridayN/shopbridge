@@ -10,10 +10,17 @@ namespace ShopBridge.API.Controllers
     /// Product Controller
     /// </summary>
     [ApiController]
-    public class ProductController : ControllerBase
+    public class ProductController : BaseController
     {
+        /// <summary>
+        /// ProductService interface object
+        /// </summary>
         private readonly IProductService _productService;
 
+        /// <summary>
+        /// Controller
+        /// </summary>
+        /// <param name="productService"></param>
         public ProductController(IProductService productService)
         {
             _productService = productService;
@@ -24,14 +31,7 @@ namespace ShopBridge.API.Controllers
         public async Task<IActionResult> SaveProduct(SaveProductRequest request)
         {
             SaveProductResponse response = await _productService.SaveProduct(request);
-            if (response.StatusCode == Enums.Enums.StatusCode.Ok)
-            {
-                return Ok(response);
-            }
-            else
-            {
-                return BadRequest(response);
-            }
+            return CreateResponse(response);
         }
 
         [HttpPost]
@@ -39,14 +39,7 @@ namespace ShopBridge.API.Controllers
         public async Task<IActionResult> RetrieveProduct(RetrieveProductRequest request)
         {
             RetrieveProductResponse response = await _productService.RetrieveProduct(request);
-            if (response.StatusCode == Enums.Enums.StatusCode.Ok)
-            {
-                return Ok(response);
-            }
-            else
-            {
-                return NotFound(response);
-            }
+            return CreateResponse(response);
         }
 
         [HttpPost]
@@ -54,14 +47,7 @@ namespace ShopBridge.API.Controllers
         public async Task<IActionResult> DeleteProduct(DeleteProductRequest request)
         {
             DeleteProductResponse response = await _productService.DeleteProduct(request);
-            if (response.StatusCode == Enums.Enums.StatusCode.Ok)
-            {
-                return Ok(response);
-            }
-            else
-            {
-                return NotFound(response);
-            }
+            return CreateResponse(response);
         }
     }
 }
