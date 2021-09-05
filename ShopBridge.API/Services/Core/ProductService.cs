@@ -28,7 +28,12 @@ namespace ShopBridge.API.Services.Core
         {
             SaveProductResponse response = new SaveProductResponse();
             ProductEntity productEntity;
-
+            if (request == null)
+            {
+                response.Message = "Invalid request.";
+                response.StatusCode = StatusCode.BadRequest;
+                return response;
+            }
             if (request.Product.Id != null)
             {
                 var savedProductResponse = await _productRepository.GetByIdAsync((Guid)request.Product.Id);
@@ -40,11 +45,12 @@ namespace ShopBridge.API.Services.Core
                     await _productRepository.UpdateAsync(savedProductResponse);
                     response.Product = ObjectMapper.Mapper.Map<Product>(savedProductResponse);
                     response.Message = "Product updated successfully";
+                    response.StatusCode = StatusCode.Ok;
                 }
                 else
                 {
-                    response.StatusCode = StatusCode.BadRequest;
                     response.Message = "No product found with given Id";
+                    response.StatusCode = StatusCode.BadRequest;
                     return response;
                 }
             } else
@@ -58,8 +64,8 @@ namespace ShopBridge.API.Services.Core
                 var savedProduct = await _productRepository.AddAsync(productEntity);
                 response.Product = ObjectMapper.Mapper.Map<Product>(savedProduct);
                 response.Message = "Product saved successfully";
+                response.StatusCode = StatusCode.Ok;
             }
-            response.StatusCode = StatusCode.Ok;
             return response;
         }
 
@@ -71,6 +77,18 @@ namespace ShopBridge.API.Services.Core
         public async Task<RetrieveProductResponse> RetrieveProduct(RetrieveProductRequest request)
         {
             RetrieveProductResponse response = new RetrieveProductResponse();
+            if (request == null)
+            {
+                response.Message = "Invalid request.";
+                response.StatusCode = StatusCode.BadRequest;
+                return response;
+            }
+            if (request.ProductId == null)
+            {
+                response.Message = "Please provide productId to retrieve the product.";
+                response.StatusCode = StatusCode.BadRequest;
+                return response;
+            }
             var savedProductResponse = await _productRepository.GetByIdAsync((Guid)request.ProductId);
             if (savedProductResponse != null)
             {
@@ -105,13 +123,25 @@ namespace ShopBridge.API.Services.Core
         public async Task<DeleteProductResponse> DeleteProduct(DeleteProductRequest request)
         {
             DeleteProductResponse response = new DeleteProductResponse();
+            if (request == null)
+            {
+                response.Message = "Invalid request.";
+                response.StatusCode = StatusCode.BadRequest;
+                return response;
+            }
+            if (request.ProductId == null)
+            {
+                response.Message = "Please provide productId to delete the product.";
+                response.StatusCode = StatusCode.BadRequest;
+                return response;
+            }
             var savedProductResponse = await _productRepository.GetByIdAsync((Guid)request.ProductId);
             if (savedProductResponse != null)
             {
                 savedProductResponse.ModifiedBy = 1;
                 savedProductResponse.ModifiedDate = DateTime.Now;
                 await _productRepository.DeleteAsync(savedProductResponse);
-                response.Message = "Product deleted successfully";
+                response.Message = "Product: " + savedProductResponse.Name + "deleted successfully";
                 response.StatusCode = StatusCode.Ok;
             }
             else
