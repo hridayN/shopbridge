@@ -20,3 +20,4 @@
 	c. Pagination can be implemented.
 	d. Createion of response from all actions can be implemented at one place.
 	e. Test cases can be written for unit testing the code using NUnit.
+8. The project structure is organized into various folders with self-descriptive names, reflecting the industry level knowledge.
