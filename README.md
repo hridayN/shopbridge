@@ -19,3 +19,4 @@
 	b. Product's offers can be implemented.
 	c. Pagination can be implemented.
 	d. Createion of response from all actions can be implemented at one place.
+	e. Test cases can be written for unit testing the code using NUnit.
