@@ -18,6 +18,5 @@
 	a. Search API can be developed, to search all products, accepting the search criteria only in a single variable. e.g., "searchText": "ProductId:'f8a2bf37-cb10-4efb-85c5-c3f2fdcbadcd',Name:'Product 1'"
 	b. Product's offers can be implemented.
 	c. Pagination can be implemented.
-	d. Createion of response from all actions can be implemented at one place.
-	e. Test cases can be written for unit testing the code using NUnit.
+	d. Test cases can be written for unit testing the code using NUnit.
 8. The project structure is organized into various folders with self-descriptive names, reflecting the industry level knowledge.
