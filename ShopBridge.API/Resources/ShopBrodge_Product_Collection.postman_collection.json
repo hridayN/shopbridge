@@ -1,0 +1,96 @@
+{
+	"info": {
+		"_postman_id": "9bf9a0c0-0a27-48cd-b404-2b3e6a18236c",
+		"name": "ShopBrodge_Product_Collection",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "saveProduct",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"product\": {\r\n        \"id\": \"f8a2bf37-cb10-4efb-85c5-c3f2fdcbadcd\",\r\n        \"name\": \"Product 1\",\r\n        \"description\": \"Product 1\",\r\n        \"price\": 100,\r\n        \"tax\": 18,\r\n        \"isRefundable\": true,\r\n        \"category\": 1,\r\n        \"isAvailable\": false,\r\n        \"offers\": null,\r\n        \"availableQuantity\": 0,\r\n        \"isGift\": true,\r\n        \"createdDate\": \"2021-09-02T23:39:15.664484+05:30\",\r\n        \"createdBy\": 1,\r\n        \"modifiedDate\": \"2021-09-02T23:39:17.0726174+05:30\",\r\n        \"modifiedBy\": 1\r\n    }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:57174/saveProduct/product",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "57174",
+					"path": [
+						"saveProduct",
+						"product"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "retrieveProduct",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"productId\": \"f8a2bf37-cb10-4efb-85c5-c3f2fdcbadcd\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:57174/retrieveProduct/product",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "57174",
+					"path": [
+						"retrieveProduct",
+						"product"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "deleteProduct",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"productId\": \"f8a2bf37-cb10-4efb-85c5-c3f2fdcbadcd\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:57174/deleteProduct/product",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "57174",
+					"path": [
+						"deleteProduct",
+						"product"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
