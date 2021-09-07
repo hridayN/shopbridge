@@ -51,5 +51,23 @@ namespace ShopBridge.API.Infrastructure.Contracts.Base
         /// <param name="id"></param>
         /// <returns></returns>
         Task<T> GetByIdAsync(Guid id);
+
+        /// <summary>
+        /// Return all records with order by
+        /// </summary>
+        /// <param name="spec"></param>
+        /// <param name="orderByColumn"></param>
+        /// <param name="isOrderBy"></param>
+        /// <returns></returns>
+        Task<IReadOnlyList<T>> GetAllAsyncWithOrder(Expression<Func<T, bool>> spec, string orderByColumn, bool isOrderBy);
+
+        /// <summary>
+        /// Return one record with order by
+        /// </summary>
+        /// <param name="spec"></param>
+        /// <param name="orderByColumn"></param>
+        /// <param name="isOrderBy"></param>
+        /// <returns></returns>
+        Task<T> GetOneAsyncWithOrder(Expression<Func<T, bool>> spec, string orderByColumn, bool isOrderBy);
     }
 }

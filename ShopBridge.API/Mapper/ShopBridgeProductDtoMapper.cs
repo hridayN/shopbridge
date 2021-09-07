@@ -10,6 +10,8 @@ namespace ShopBridge.API.Mapper
         {
             CreateMap<Product, ProductEntity>();
             CreateMap<ProductEntity, Product>();
+            CreateMap<User, UserEntity>();
+            CreateMap<UserEntity, User>();
         }
     }
 }

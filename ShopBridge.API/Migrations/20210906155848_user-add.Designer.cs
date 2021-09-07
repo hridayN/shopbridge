@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using ShopBridge.API.Infrastructure;
@@ -9,9 +10,10 @@ using ShopBridge.API.Infrastructure;
 namespace ShopBridge.API.Migrations
 {
     [DbContext(typeof(ShopBridgeProductDbContext))]
-    partial class ShopBridgeProductDbContextModelSnapshot : ModelSnapshot
+    [Migration("20210906155848_user-add")]
+    partial class useradd
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

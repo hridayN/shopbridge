@@ -31,5 +31,10 @@ namespace ShopBridge.API.Infrastructure
         /// Product table
         /// </summary>
         public DbSet<ProductEntity> Product { get; set; }
+
+        /// <summary>
+        /// User table
+        /// </summary>
+        public DbSet<UserEntity> User { get; set; }
     }
 }

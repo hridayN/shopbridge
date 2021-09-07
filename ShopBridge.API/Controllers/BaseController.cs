@@ -21,6 +21,7 @@ namespace ShopBridge.API.Controllers
                 Enums.Enums.StatusCode.Conflict => Conflict(response),
                 Enums.Enums.StatusCode.BadRequest => BadRequest(response),
                 Enums.Enums.StatusCode.NotFound => NotFound(response),
+                Enums.Enums.StatusCode.Unauthorized => Unauthorized(response),
                 _ => Ok(response)
             };
         }
